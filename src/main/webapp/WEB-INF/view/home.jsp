@@ -12,9 +12,17 @@
     <input name="b" type="number">
     <input type="submit" value="add numbers">
 
-    <c:set var="result" scope="request" value="${requestScope.get('result')}"/>
-    <c:if test="${result gt 0}">
-        <p><c:out value="${result}"/></p>
+    <c:set var="resultAdd" scope="request" value="${requestScope.get('result-adding')}"/>
+    <c:set var="resultMinus" scope="request" value="${requestScope.get('result-substraction')}"/>
+    <c:set var="resultMulti" scope="request" value="${requestScope.get('result-multiplying')}"/>
+    <c:set var="resultDivi" scope="request" value="${requestScope.get('result-dividing')}"/>
+
+    <c:if test="${resultAdd != null}">
+        <h3>adding result is : <c:out value="${ resultAdd }"/></h3>
+        <h3>substracting result is : <c:out value="${ resultMinus }"/></h3>
+        <h3>multiplying result is : <c:out value="${ resultMulti }"/></h3>
+        <h3>dividing result is : <c:out value="${ resultDivi }"/></h3>
+
     </c:if>
 
 </form>
