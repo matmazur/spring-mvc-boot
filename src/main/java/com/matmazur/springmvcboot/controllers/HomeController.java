@@ -1,34 +1,32 @@
 package com.matmazur.springmvcboot.controllers;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
 
     @RequestMapping(value = "/")
-    public String home(HttpServletRequest req) {
+    public String home(
+            @RequestParam(name = "username", defaultValue = "Noname", required = false) String username,
+            @RequestHeader(name = "User-Agent") String agent,
+            @RequestHeader HttpHeaders httpHeaders,
+            ModelMap modelMap) {
 
-        String username = req.getParameter("username");
+        modelMap.put("name", username);
 
-        if (username == null) {
-            System.out.println("no username");
-        } else {
-            System.out.println(username);
-            req.setAttribute("name", username);
+        System.out.println(">>>>>>>>>>>>>>HEADERS>>>>>>>>>>>>");
+        for (String s : httpHeaders.toSingleValueMap().keySet()) {
+            System.out.println(s + "  -  " + httpHeaders.get(s));
         }
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
-        Cookie[] cookies = req.getCookies();
-
-        if (cookies != null && cookies.length != 0) {
-            for (Cookie c : cookies) {
-                System.out.println(c.getName() + " - " + c.getValue());
-            }
-        }
-
+        System.out.println(agent);
+        System.out.println(username);
         return "home";
     }
 }
