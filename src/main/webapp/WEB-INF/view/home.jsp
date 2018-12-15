@@ -10,7 +10,7 @@
 <form method="post" action="/">
     <input name="a" type="number">
     <input name="b" type="number">
-    <input type="submit" value="add numbers">
+    <input type="submit" value="calculator">
 
     <c:set var="resultAdd" scope="request" value="${requestScope.get('result-adding')}"/>
     <c:set var="resultMinus" scope="request" value="${requestScope.get('result-substraction')}"/>
