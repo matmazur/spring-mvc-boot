@@ -6,7 +6,7 @@
     <title>Cart page</title>
 </head>
 <body>
-<c:set var="cart" scope="request" value="${requestScope.get('cart')}"/>
+<c:set var="cart" scope="session" value="${sessionScope.get('cart')}"/>
 <c:choose>
     <c:when test="${cart == null || empty cart}">
         <p>list <c:out value="is empty"/></p>
