@@ -7,6 +7,8 @@
 <body>
 <h1>Hello home!</h1>
 <h3><a href="${pageContext.request.contextPath}/time">Time/scope test here</a></h3>
+<h3><a href="${pageContext.request.contextPath}/cart">Cart session/singleton scope test here</a></h3>
+
 <h3>Calculator test</h3>
 <form method="post" action="/">
     <input name="a" type="number">
