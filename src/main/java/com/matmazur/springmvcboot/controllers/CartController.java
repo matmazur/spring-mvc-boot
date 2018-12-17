@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CartController {
@@ -19,9 +21,18 @@ public class CartController {
     @GetMapping("/cart")
     public String cart(ModelMap modelMap) {
 
-        modelMap.put("cart",shoppingCart.getCart());
+        modelMap.put("cart", shoppingCart.getCart());
 
+        return "cart";
+    }
 
+    @PostMapping
+    public String cart(@RequestParam() String product, ModelMap modelMap) {
+
+        if (!product.isEmpty()) {
+            shoppingCart.getCart().add(product);
+            modelMap.put("cart", shoppingCart.getCart());
+        }
         return "cart";
     }
 }
