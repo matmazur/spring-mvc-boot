@@ -7,16 +7,22 @@
 </head>
 <body>
 <c:set var="cart" scope="session" value="${sessionScope.get('cart')}"/>
-<c:if test="${cart == null}">
-    <p><c:out value="is empty"/></p>
-</c:if>
-<c:otherwise>
-    <ol>
-        <c:forEach items="${cart}" var="item">
-            <li>${item}</li>
-        </c:forEach>
-    </ol>
-</c:otherwise>
-
+<c:choose>
+    <c:when test="${cart == null || empty cart}">
+        <p>list <c:out value="is empty"/></p>
+    </c:when>
+    <c:otherwise>
+        <ol>
+            <c:forEach items="${cart}" var="item">
+                <li>${item}</li>
+            </c:forEach>
+        </ol>
+    </c:otherwise>
+</c:choose>
+<h2></h2>
+<form method="post" action="/cart">
+    <input type="text" name="product" placeholder="type in product to add">
+    <input type="submit" value="add to list">
+</form>
 </body>
 </html>
